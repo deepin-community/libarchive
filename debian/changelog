@@ -1,8 +1,85 @@
-libarchive (3.4.3-deepin1) unstable; urgency=medium
+libarchive (3.6.2-1) unstable; urgency=medium
 
-  * Rebuild
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Database.
+  * Update standards version to 4.6.0, no changes needed.
 
- -- Deepin Packages Builder <packages@deepin.org>  Fri, 11 Nov 2022 17:58:42 +0800
+  [ Peter Pentchev ]
+  * Declare compliance with Policy 4.6.2 with no changes.
+  * Fix the licensing of the blake2-related files.
+    Closes: #1023392
+  * New upstream version:
+    - fix a ZIP read vulnerability (CVE-2022-28066)
+      Closes: #1008953
+    - fix a memory allocation vulnerability (CVE-2022-36227)
+      Closes: #1024669
+    - refresh the typos patch
+    - remove a lot of libarchive internal functions from the shared
+      library's symbols file. These functions were never present in
+      any of the public-facing libarchive header files, so they should
+      not be referenced by any libarchive consumers. In version 3.6.2,
+      libarchive switched to a "hide internal symbols" policy, so that
+      these symbols are now not present in the shipped shared library.
+    - drop the optional internal symbols regular expressions, too;
+      now that libarchive hides its internal symbols, the appearance of
+      any names like that in the generated symbols file would be a bug
+    - add the iconv-pkgconfig patch to drop the reference to "iconv"
+      from the .pc file: on Debian systems, iconv(3) is part of glibc
+
+ -- Peter Pentchev <roam@debian.org>  Sat, 24 Dec 2022 23:17:29 +0200
+
+libarchive (3.6.0-1) unstable; urgency=medium
+
+  * New upstream version (Closes: #1007120):
+    - update the upstream copyright information
+    - drop some patches that were taken from the upstream source:
+      - lzip-large-dict
+      - upstream-fix-32bit-size-cast
+      - upstream-fixup-file-flags
+      - upstream-fixup-symlinks
+    - add another spelling correction to the typos patch
+    - update the line numbers in the typos patch
+  * Add the year 2022 to my debian/* copyright notice.
+  * Reorder the copyright file so that it makes sense.
+
+ -- Peter Pentchev <roam@debian.org>  Wed, 30 Mar 2022 13:04:33 +0300
+
+libarchive (3.5.2-1) unstable; urgency=medium
+
+  * Declare compliance with Debian Policy 4.6.0 with no changes.
+  * Add the year 2021 to my debian/* copyright notice.
+  * Drop the Breaks/Replaces relations for pre-oldstable versions of
+    bsdtar and bsdcpio.
+  * Fix some shellcheck complaints about the minitar autopkgtest.
+  * Use a comma, not a semicolon, in the Origin DEP-3 header.
+  * Annotate the sharutils build dependency with <!nocheck>.
+    Closes: #981654
+  * Drop the obsolete libattr1-dev build dependency. At the moment it is
+    still pulled in by libacl1-dev, but there is no reason for us not to
+    do the right thing, so that everything goes right when libacl1-dev
+    corrects its build dependency. Closes: #953931
+  * New upstream version:
+    - fix handling of symlink ACLs; Closes: 1001986
+    - never follow symlinks when setting file flags; Closes: 1001990
+    - update the upstream copyright information
+    - drop some patches that were taken from the upstream source:
+      - upstream-cpio-hardlink-type
+      - upstream-cpio-rdev
+      - upstream-unneeded-strlen
+      - upstream-hardlink-to-self
+      - upstream-set-format-error
+      - upstream-rar-read-format
+      - upstream-memory-stdlib
+      - upstream-max-comp-level
+      - upstream-isint-w
+    - update the library symbols file
+  * Add the lzip-large-dict patch to support larger lzip dictionaries.
+    Closes: #1001901
+  * Add the upstream-fixup-symlinks, upstream-fixup-file-flags, and
+    upstream-fix-32bit-size-cast patches, importing three upstream
+    post-3.5.2 commits.
+
+ -- Peter Pentchev <roam@debian.org>  Wed, 22 Dec 2021 19:51:54 +0200
 
 libarchive (3.4.3-2) unstable; urgency=medium
 
