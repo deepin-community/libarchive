@@ -238,7 +238,7 @@ Values between 0 and 9 are supported.
 The interpretation of the compression level depends on the chosen 
 compression method. 
 </dd></dl> 
-</dd><dt>Format cpio</dt><dd> 
+</dd><dt>Format bin</dt><dd> 
 <dl> 
 <dt>'''hdrcharset'''</dt><dd> 
 The value is used as a character set name that will be 
@@ -478,6 +478,18 @@ XXX needs explanation XXX
 The value is used as a character set name that will be 
 used when translating file names. 
 </dd></dl> 
+</dd><dt>Format odc</dt><dd> 
+<dl> 
+<dt>'''hdrcharset'''</dt><dd> 
+The value is used as a character set name that will be 
+used when translating file names. 
+</dd></dl> 
+</dd><dt>Format pwb</dt><dd> 
+<dl> 
+<dt>'''hdrcharset'''</dt><dd> 
+The value is used as a character set name that will be 
+used when translating file names. 
+</dd></dl> 
 </dd><dt>Format pax</dt><dd> 
 <dl> 
 <dt>'''hdrcharset'''</dt><dd> 
@@ -650,9 +662,9 @@ and
 functions. 
 == SEE ALSO == 
 [[ManPageBsdtar1]], 
-[[ManPagerchiveeadetptions3]], 
-[[ManPagerchiverite3]], 
-[[ManPageibarchive3]] 
+[[ManPageArchiveReadSetOptions3]], 
+[[ManPageArchiveWrite3]], 
+[[ManPageLibarchive3]] 
 == HISTORY == 
 The 
 '''libarchive''' 

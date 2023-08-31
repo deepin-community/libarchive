@@ -12,7 +12,9 @@ else
     CROSS_COMPILE=
 fi
 
-${CROSS_COMPILE}gcc -O2 -g -Wno-unused-result -o minitar examples/minitar/minitar.c $(${CROSS_COMPILE}pkg-config --cflags --libs libarchive)
+flags="$("${CROSS_COMPILE}pkg-config" --cflags --libs libarchive)"
+# shellcheck disable=2086  # there may be more than one word in $flags
+"${CROSS_COMPILE}gcc" -O2 -g -Wno-unused-result -o minitar examples/minitar/minitar.c $flags
 
 # Create different tarballs
 echo "Deadbeaf" > foo
@@ -25,14 +27,18 @@ echo "Compressing foo.tar.bz2..."
 
 # Test tarballs for correct mime type
 echo "Testing mime type of foo.tar..."
-test "$(file -b --mime-type foo.tar)" = "application/x-tar"
+filetype="$(file -b --mime-type foo.tar)"
+test "$filetype" = "application/x-tar"
 echo "Testing mime type of foo.tar.gz..."
-test "$(file -b --mime-type foo.tar.gz)" = "application/gzip"
+filetype="$(file -b --mime-type foo.tar.gz)"
+test "$filetype" = "application/gzip"
 echo "Testing mime type of foo.tar.bz2..."
-test "$(file -b --mime-type foo.tar.bz2)" = "application/x-bzip2"
+filetype="$(file -b --mime-type foo.tar.bz2)"
+test "$filetype" = "application/x-bzip2"
 
 # Test untar, too, for extracting.
-${CROSS_COMPILE}gcc -O2 -g -Wno-unused-result -o untar examples/untar.c $(${CROSS_COMPILE}pkg-config --cflags --libs libarchive)
+# shellcheck disable=2086  # there may be more than one word in $flags
+"${CROSS_COMPILE}gcc" -O2 -g -Wno-unused-result -o untar examples/untar.c $flags
 
 # Extract tarballs and compare content
 mv foo foo.orig
