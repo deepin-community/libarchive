@@ -4,13 +4,17 @@
 DEB_BUILD_MAINT_OPTIONS=	hardening=+all
 export DEB_BUILD_MAINT_OPTIONS
 
+include /usr/share/dpkg/default.mk
+
+include /usr/share/debhelper/dh_package_notes/package-notes.mk
+
 %:
 	dh $@
 
 override_dh_auto_configure:
 	dh_auto_configure -- --without-openssl --with-nettle \
 		--enable-bsdtar=shared --enable-bsdcpio=shared \
-		--enable-bsdcat=shared
+		--enable-bsdcat=shared --enable-bsdunzip=shared
 
 override_dh_autoreconf:
 	dh_autoreconf build/autogen.sh

@@ -1,3 +1,4 @@
+Bug-Database: https://github.com/libarchive/libarchive/issues
 Bug-Submit: https://github.com/libarchive/libarchive/issues
 FAQ: https://github.com/libarchive/libarchive/wiki
 Security-Contact: Tim Kientzle <kientzle@FreeBSD.org>
