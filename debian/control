@@ -2,6 +2,8 @@ Source: libarchive
 Priority: optional
 Maintainer: Peter Pentchev <roam@debian.org>
 Build-Depends: debhelper-compat (= 13),
+               dpkg-build-api (= 1),
+               dh-package-notes,
                pkg-config,
                libbz2-dev,
                liblz4-dev,
@@ -11,16 +13,14 @@ Build-Depends: debhelper-compat (= 13),
                zlib1g-dev,
                libacl1-dev [!hurd-any],
                libext2fs-dev,
-               libattr1-dev,
-               sharutils,
+               sharutils <!nocheck>,
                nettle-dev,
                locales <!nocheck> | locales-all <!nocheck>
-Standards-Version: 4.5.0
+Standards-Version: 4.6.2
 Section: libs
 Homepage: https://www.libarchive.org/
 Vcs-Browser: https://salsa.debian.org/debian/libarchive
 Vcs-Git: https://salsa.debian.org/debian/libarchive.git
-Rules-Requires-Root: no
 
 Package: libarchive-dev
 Section: libdevel
@@ -110,8 +110,6 @@ Package: libarchive-tools
 Architecture: any
 Depends: libarchive13 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
 Section: utils
-Breaks: bsdcpio (<< 3.2.1-2~), bsdtar (<< 3.2.1-2~)
-Replaces: bsdcpio (<< 3.2.1-2~), bsdtar (<< 3.2.1-2~)
 Description: FreeBSD implementations of 'tar' and 'cpio' and other archive tools
  This package contains several command-line tools based on the libarchive
  library.
