@@ -274,7 +274,7 @@ Files: debian/*
 Copyright:
  (c) 2005-2010 John Goerzen <jgoerzen@complete.org>
  (c) 2009-2019 Andreas Henriksson <andreas@fatal.se>
- (c) 2016-2023 Peter Pentchev <roam@debian.org>
+ (c) 2016-2024 Peter Pentchev <roam@debian.org>
 License: BSD-2-clause
 
 License: BSD-2-clause

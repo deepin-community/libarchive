@@ -1,4 +1,4 @@
-libarchive.so.13 libarchive13 #MINVER#
+libarchive.so.13 libarchive13t64 #MINVER#
 * Build-Depends-Package: libarchive-dev
 #MISSING: 3.6.2-1# PPMD8_kExpEscape@Base 3.4.0
 #MISSING: 3.6.2-1# Ppmd8_Alloc@Base 3.4.0

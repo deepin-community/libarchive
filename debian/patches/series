@@ -1,3 +1,7 @@
 typos.patch
 iso9660-hash.patch
 test-zstd-32bit.patch
+robust-error-reporting.patch
+fix-OOB-in-rar-e8-filter-2135.patch
+fix-OOB-in-rar-delta-filter-2148.patch
+fix-OOB-in-rar-audio-filter-2149.patch

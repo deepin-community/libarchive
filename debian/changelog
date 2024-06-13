@@ -1,3 +1,36 @@
+libarchive (3.7.2-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * fix: OOB in rar e8 filter (CVE-2024-26256) (Closes: #1072107)
+  * fix: OOB in rar delta filter
+  * fix: OOB in rar audio filter
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 01 Jun 2024 15:50:51 +0200
+
+libarchive (3.7.2-2) unstable; urgency=medium
+
+  [ Luca Boccassi ]
+  * libarchive-dev: depend on -dev packages in an attempt to
+    fix pkg-config --static --libs
+    Addresses: 1056317; more work needed on libarchive's own
+    configure tests
+
+  [ Peter Pentchev ]
+  * Acknowledge Lukas Märdian 64-bit-time_t-related NMU. Thanks!
+  * Add the year 2024 to my debian/* copyright notice.
+  * Re-sort the dependencies lists in the debian/control file.
+  * Switch the pkg-config dependency over to pkgconf.
+  * Add the robust-error-reporting upstream patch. Closes: #1068047
+
+ -- Peter Pentchev <roam@debian.org>  Sat, 30 Mar 2024 20:11:06 +0200
+
+libarchive (3.7.2-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1062224
+
+ -- Lukas Märdian <slyon@debian.org>  Thu, 29 Feb 2024 08:40:57 +0000
+
 libarchive (3.7.2-1) unstable; urgency=medium
 
   * Add the iso9660-hash patch to fix file ordering. Closes: #1051322
