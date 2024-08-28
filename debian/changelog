@@ -1,3 +1,9 @@
+libarchive (3.7.2-1deepin1) unstable; urgency=medium
+
+  * fix CVE-2024-26256.
+
+ -- kongxinglong <kongxinglong@kongxinglong@uniontech.com>  Wed, 28 Aug 2024 15:52:55 +0800
+
 libarchive (3.7.2-1) unstable; urgency=medium
 
   * Add the iso9660-hash patch to fix file ordering. Closes: #1051322
