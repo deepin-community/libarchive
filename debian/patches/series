@@ -1,3 +1,4 @@
 typos.patch
 iso9660-hash.patch
 test-zstd-32bit.patch
+CVE-2024-26256.patch
