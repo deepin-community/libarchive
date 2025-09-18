@@ -1,8 +1,90 @@
-libarchive (3.7.2-1deepin1) unstable; urgency=medium
+libarchive (3.7.4-4) unstable; urgency=medium
 
-  * fix CVE-2024-26256.
+  * Add the CVE-2025-5914, CVE-2025-5915, CVE-2025-5916, and
+    CVE-2025-5917 patches.
+    Closes: #1107621, #1107622, #1107623, #1107626
 
- -- kongxinglong <kongxinglong@kongxinglong@uniontech.com>  Wed, 28 Aug 2024 15:52:55 +0800
+ -- Peter Pentchev <roam@debian.org>  Thu, 24 Jul 2025 17:40:32 +0300
+
+libarchive (3.7.4-3) unstable; urgency=medium
+
+  * Rename the CVE-2025-1632 patch to CVE-2025-1632-25724, use the exact
+    upstream commit that fixes two problems at once.
+    Also closes: #1103479
+
+ -- Peter Pentchev <roam@debian.org>  Sun, 27 Apr 2025 23:19:29 +0300
+
+libarchive (3.7.4-2) unstable; urgency=high
+
+  * Acknowledge NMU; thanks, Salvatore!
+  * Point to the debian/trixie branch in the gbp.conf file since
+    the master branch in the repository already contains changes that
+    did not make it in time for the Trixie freeze.
+  * Add the CVE-2025-1632 patch. Closes: #1103494
+  * Add the year 2025 to my debian/* copyright notice.
+
+ -- Peter Pentchev <roam@debian.org>  Sat, 26 Apr 2025 11:34:57 +0300
+
+libarchive (3.7.4-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * rar4 reader: protect copy_from_lzss_window_to_unp() (CVE-2024-20696)
+    (Closes: #1086155)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 01 Nov 2024 21:30:39 +0100
+
+libarchive (3.7.4-1) unstable; urgency=medium
+
+  * Drop a t64-related Lintian override.
+  * Declare compliance with Policy 4.7.0 with no changes.
+  * Use debhelper compat level 14:
+    - use X-DH-Compat
+    - let debhelper take care of some default dependencies
+  * New upstream version:
+    - use `git rm` in the `upstream` branch to remove two test files that
+      was forgotten in the upstream tarball generation
+    - update the symbols file
+    - drop the fix-OOB-in-rar-e8-filter-2135, iso9660-hash, test-zstd-32bit, and
+      robust-error-reporting patches, they were either taken from upstream or
+      integrated there
+    - refresh the typos patch
+    - refresh the line numbers in the fix-OOB-* patches
+  * Use debputy's X-Style: black.
+
+ -- Peter Pentchev <roam@debian.org>  Wed, 07 Aug 2024 14:36:27 +0300
+
+libarchive (3.7.2-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * fix: OOB in rar e8 filter (CVE-2024-26256) (Closes: #1072107)
+  * fix: OOB in rar delta filter
+  * fix: OOB in rar audio filter
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 01 Jun 2024 15:50:51 +0200
+
+libarchive (3.7.2-2) unstable; urgency=medium
+
+  [ Luca Boccassi ]
+  * libarchive-dev: depend on -dev packages in an attempt to
+    fix pkg-config --static --libs
+    Addresses: 1056317; more work needed on libarchive's own
+    configure tests
+
+  [ Peter Pentchev ]
+  * Acknowledge Lukas Märdian 64-bit-time_t-related NMU. Thanks!
+  * Add the year 2024 to my debian/* copyright notice.
+  * Re-sort the dependencies lists in the debian/control file.
+  * Switch the pkg-config dependency over to pkgconf.
+  * Add the robust-error-reporting upstream patch. Closes: #1068047
+
+ -- Peter Pentchev <roam@debian.org>  Sat, 30 Mar 2024 20:11:06 +0200
+
+libarchive (3.7.2-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1062224
+
+ -- Lukas Märdian <slyon@debian.org>  Thu, 29 Feb 2024 08:40:57 +0000
 
 libarchive (3.7.2-1) unstable; urgency=medium
 

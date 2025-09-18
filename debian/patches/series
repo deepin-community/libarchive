@@ -1,4 +1,9 @@
 typos.patch
-iso9660-hash.patch
-test-zstd-32bit.patch
-CVE-2024-26256.patch
+fix-OOB-in-rar-delta-filter-2148.patch
+fix-OOB-in-rar-audio-filter-2149.patch
+rar4-reader-protect-copy_from_lzss_window_to_unp-217.patch
+CVE-2025-1632-25724.patch
+CVE-2025-5914.patch
+CVE-2025-5915.patch
+CVE-2025-5916.patch
+CVE-2025-5917.patch
