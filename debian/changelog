@@ -1,3 +1,9 @@
+libarchive (3.7.2-1deepin2) unstable; urgency=medium
+
+  * fix CVE-2026-5121: integer overflow in zisofs block pointer allocation.
+
+ -- deepin-ci-robot <packages@deepin.org>  Wed, 15 Apr 2026 12:30:00 +0800
+
 libarchive (3.7.2-1deepin1) unstable; urgency=medium
 
   * fix CVE-2024-26256.
