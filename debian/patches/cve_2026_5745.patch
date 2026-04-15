@@ -1,0 +1,37 @@
+Description: Fix NULL pointer dereference in archive_acl_from_text_nl
+ A NULL pointer dereference vulnerability exists in the ACL parsing logic,
+ specifically within the archive_acl_from_text_nl() function. When processing
+ a malformed ACL string (such as a bare "d" or "default" tag without
+ subsequent fields), the function fails to perform adequate validation
+ before advancing the pointer.
+ .
+ This patch moves the pointer increment after the length guard, same as
+ the fix applied to archive_acl_from_text_w() in commit 7a6549a6.
+Author: libarchive upstream
+Origin: upstream, https://github.com/libarchive/libarchive/pull/2905
+Bug: https://security-tracker.debian.org/tracker/CVE-2026-5745
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1132998
+Forwarded: not-needed
+---
+ libarchive/archive_acl.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/libarchive/archive_acl.c
++++ b/libarchive/archive_acl.c
+@@ -1712,7 +1712,6 @@ set_rte:
+ 
+ 			tag = 0;
+ 			s = field[n].start;
+-			st = field[n].start + 1;
+ 			len = field[n].end - field[n].start;
+ 
+ 			if (len == 0) {
+@@ -1720,6 +1719,8 @@ set_rte:
+ 				continue;
+ 			}
+ 
++			st = s + 1;
++
+ 			switch (*s) {
+ 			case 'u':
+ 				if (len == 1 || (len == 4
