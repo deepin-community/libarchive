@@ -5,7 +5,7 @@ Last-Update: 2022-03-29
 
 --- a/libarchive/archive_string.c
 +++ b/libarchive/archive_string.c
-@@ -3525,7 +3525,7 @@
+@@ -3526,7 +3526,7 @@
  
  	if (sc->to_cp == CP_C_LOCALE) {
  		/*
@@ -14,7 +14,7 @@ Last-Update: 2022-03-29
  		 */
  		u16 = _p;
  		ll = 0;
-@@ -3644,7 +3644,7 @@
+@@ -3645,7 +3645,7 @@
  	avail = as16->buffer_length - 2;
  	if (sc->from_cp == CP_C_LOCALE) {
  		/*
@@ -25,7 +25,7 @@ Last-Update: 2022-03-29
  		while (count < length && *s) {
 --- a/libarchive/test/test_compat_lzip.c
 +++ b/libarchive/test/test_compat_lzip.c
-@@ -48,7 +48,7 @@
+@@ -47,7 +47,7 @@
  rm -r $dir
  }
  #
@@ -34,7 +34,7 @@ Last-Update: 2022-03-29
  #
  name=test_compat_lzip_1
  dir="$name`date +%Y%m%d%H%M%S`.$USER"
-@@ -76,7 +76,7 @@
+@@ -75,7 +75,7 @@
  */
  
  /*
@@ -65,7 +65,7 @@ Last-Update: 2022-03-29
    need to provide your own locking.
 --- a/libarchive/archive_read_support_format_cpio.c
 +++ b/libarchive/archive_read_support_format_cpio.c
-@@ -825,9 +825,9 @@
+@@ -824,9 +824,9 @@
  }
  
  /*
@@ -80,7 +80,7 @@ Last-Update: 2022-03-29
   */
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -1057,8 +1057,8 @@
+@@ -1065,8 +1065,8 @@
          CMAKE_C_COMPILER_ID MATCHES "^Clang$")
        #
        # During checking iconv proto type, we should use -Werror to avoid the
@@ -93,7 +93,7 @@ Last-Update: 2022-03-29
      ENDIF (CMAKE_C_COMPILER_ID MATCHES "^GNU$" OR
 --- a/libarchive/archive_read_support_filter_uu.c
 +++ b/libarchive/archive_read_support_filter_uu.c
-@@ -231,8 +231,8 @@
+@@ -230,8 +230,8 @@
  		size_t nbytes_req = (*ravail+1023) & ~1023U;
  		ssize_t tested;
  
@@ -104,7 +104,7 @@ Last-Update: 2022-03-29
  		if (nbytes_req < (size_t)*ravail + 160)
  			nbytes_req <<= 1;
  
-@@ -410,7 +410,7 @@
+@@ -409,7 +409,7 @@
  
  		/*
  		 * Calculate a new buffer size for in_buff.
@@ -113,7 +113,7 @@ Last-Update: 2022-03-29
  		 */
  		newsize = uudecode->in_allocated;
  		do {
-@@ -487,7 +487,7 @@
+@@ -486,7 +486,7 @@
  	if (uudecode->in_cnt) {
  		/*
  		 * If there is remaining data which is saved by
@@ -124,7 +124,7 @@ Last-Update: 2022-03-29
  		    avail_in + uudecode->in_cnt) != ARCHIVE_OK)
 --- a/libarchive/archive_read_support_format_mtree.c
 +++ b/libarchive/archive_read_support_format_mtree.c
-@@ -392,8 +392,8 @@
+@@ -391,8 +391,8 @@
  		if (len >= MAX_LINE_LEN)
  			return (-1);
  
@@ -135,16 +135,7 @@ Last-Update: 2022-03-29
  		if (nbytes_req < (size_t)*ravail + 160)
  			nbytes_req <<= 1;
  
-@@ -516,7 +516,7 @@
- 
- /*
-  * Test whether there is a set of mtree keywords.
-- * Returns the number of keyword.
-+ * Returns the number of keywords.
-  * Returns -1 if we got incorrect sequence.
-  * This function expects a set of "<space characters>keyword=value".
-  * When "unset" is specified, expects a set of "<space characters>keyword".
-@@ -568,8 +568,8 @@
+@@ -567,8 +567,8 @@
  				--len;
  				value = 1;
  			}
@@ -155,7 +146,7 @@ Last-Update: 2022-03-29
  			if (!unset && value == 0)
  				return (-1);
  		}
-@@ -752,7 +752,7 @@
+@@ -751,7 +751,7 @@
  				} else if (form_D == 1) {
  					if (!last_is_path && keywords > 0)
  						/* This this is not `form D'
@@ -164,7 +155,7 @@ Last-Update: 2022-03-29
  						 * format. */
  						break;
  				}
-@@ -805,7 +805,7 @@
+@@ -804,7 +804,7 @@
   * to read the entire mtree file into memory up front.
   *
   * The parsing is done in two steps.  First, it is decided if a line
@@ -173,90 +164,3 @@ Last-Update: 2022-03-29
   * Otherwise, the options of the line are merged with the current
   * global options.
   */
---- a/doc/html/archive_read_disk.3.html
-+++ b/doc/html/archive_read_disk.3.html
-@@ -381,7 +381,7 @@
- archive_match_path_excluded, archive_match_time_excluded, or
- archive_match_owner_excluded, then the callback function
- specified by the _excluded_func parameter will execute. This
--function will recieve data provided to the fourth parameter,
-+function will receive data provided to the fourth parameter,
- void *_client_data.</p>
- 
- 
-@@ -390,7 +390,7 @@
- <p style="margin-left:17%;">Allows the caller to set a
- callback function during calls to archive_read_header(3) to
- filter out metadata for each entry. The callback function
--recieves the struct archive object, void* custom filter
-+receives the struct archive object, void* custom filter
- data, and the struct archive_entry. If the callback function
- returns an error, ARCHIVE_RETRY will be returned and the
- entry will not be further processed.</p>
---- a/doc/man/archive_read_disk.3
-+++ b/doc/man/archive_read_disk.3
-@@ -299,12 +299,12 @@
- Tn archive_match_time_excluded,
- or
- Tn archive_match_owner_excluded,
--then the callback function specified by the _excluded_func parameter will execute. This function will recieve data provided to the fourth parameter, void *_client_data.
-+then the callback function specified by the _excluded_func parameter will execute. This function will receive data provided to the fourth parameter, void *_client_data.
- .TP
- \fB\%archive_read_disk_set_metadata_filter_callback\fP()
- Allows the caller to set a callback function during calls to
- \fBarchive_read_header\fP(3)
--to filter out metadata for each entry. The callback function recieves the
-+to filter out metadata for each entry. The callback function receives the
- Tn struct archive
- object, void* custom filter data, and the 
- Tn struct archive_entry.
---- a/doc/text/archive_read_disk.3.txt
-+++ b/doc/text/archive_read_disk.3.txt
-@@ -222,13 +222,13 @@
- 	     calls to archive_match_path_excluded,
- 	     archive_match_time_excluded, or archive_match_owner_excluded,
- 	     then the callback function specified by the _excluded_func param‐
--	     eter will execute. This function will recieve data provided to
-+	     eter will execute. This function will receive data provided to
- 	     the fourth parameter, void *_client_data.
- 
-      archive_read_disk_set_metadata_filter_callback()
- 	     Allows the caller to set a callback function during calls to
- 	     archive_read_header(3) to filter out metadata for each entry. The
--	     callback function recieves the struct archive object, void* cus‐
-+	     callback function receives the struct archive object, void* cus‐
- 	     tom filter data, and the struct archive_entry.  If the callback
- 	     function returns an error, ARCHIVE_RETRY will be returned and the
- 	     entry will not be further processed.
---- a/doc/wiki/ManPageArchiveReadDisk3.wiki
-+++ b/doc/wiki/ManPageArchiveReadDisk3.wiki
-@@ -278,11 +278,11 @@
- '''archive_match_time_excluded ,''' 
- or 
- '''archive_match_owner_excluded ,''' 
--then the callback function specified by the _excluded_func parameter will execute. This function will recieve data provided to the fourth parameter, void *_client_data. 
-+then the callback function specified by the _excluded_func parameter will execute. This function will receive data provided to the fourth parameter, void *_client_data. 
- </dd><dt>'''archive_read_disk_set_metadata_filter_callback'''()</dt><dd> 
- Allows the caller to set a callback function during calls to 
- [[ManPageArchiveReadHeader3]] 
--to filter out metadata for each entry. The callback function recieves the 
-+to filter out metadata for each entry. The callback function receives the 
- '''struct archive''' 
- object, void* custom filter data, and the  
- '''struct archive_entry .''' 
---- a/libarchive/archive_read_disk.3
-+++ b/libarchive/archive_read_disk.3
-@@ -290,11 +290,11 @@
- .Tn archive_match_time_excluded ,
- or
- .Tn archive_match_owner_excluded ,
--then the callback function specified by the _excluded_func parameter will execute. This function will recieve data provided to the fourth parameter, void *_client_data.
-+then the callback function specified by the _excluded_func parameter will execute. This function will receive data provided to the fourth parameter, void *_client_data.
- .It Fn archive_read_disk_set_metadata_filter_callback
- Allows the caller to set a callback function during calls to
- .Xr archive_read_header 3
--to filter out metadata for each entry. The callback function recieves the
-+to filter out metadata for each entry. The callback function receives the
- .Tn struct archive
- object, void* custom filter data, and the 
- .Tn struct archive_entry .
