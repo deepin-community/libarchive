@@ -1,14 +1,137 @@
-libarchive (3.7.2-1deepin2) unstable; urgency=medium
+libarchive (3.7.4-4+deb13u1) trixie; urgency=medium
 
-  * fix CVE-2026-5121: integer overflow in zisofs block pointer allocation.
+  * Non-maintainer upload by the LTS team.
 
- -- deepin-ci-robot <packages@deepin.org>  Wed, 15 Apr 2026 12:30:00 +0800
+  [ Bastien Roucaries ]
+  * Fix CVE-2025-5918 (Closes: #1107624)
+    A vulnerability has been identified in the libarchive library. This flaw
+    can be triggered when file streams are piped into bsdtar, potentially
+    allowing for reading past the end of the file.  This out-of-bounds read
+    can lead to unintended consequences, including unpredictable program
+    behavior, memory corruption, or a denial-of-service condition.
 
-libarchive (3.7.2-1deepin1) unstable; urgency=medium
+  [ Arnaud Rebillout ]
+  * Fix CVE-2026-4111 (Closes: #1130753)
+    A flaw was identified in the RAR5 archive decompression logic of the
+    libarchive library, specifically within the archive_read_data() processing
+    path. When a specially crafted RAR5 archive is processed, the
+    decompression routine may enter a state where internal logic prevents
+    forward progress.  This condition results in an infinite loop that
+    continuously consumes CPU resources. Because the archive passes checksum
+    validation and appears structurally valid, affected applications cannot
+    detect the issue before processing. This can allow attackers to cause
+    persistent denial-of-service conditions in services that automatically
+    process archives.
+  * Fix CVE-2026-4424 (Closes: #1131446)
+    A flaw was found in libarchive. This heap out-of-bounds read vulnerability
+    exists in the RAR archive processing logic due to improper validation of
+    the LZSS sliding window size after transitions between compression
+    methods. A remote attacker can exploit this by providing a specially
+    crafted RAR archive, leading to the disclosure of sensitive heap memory
+    information without requiring authentication or user interaction.
+  * Fix CVE-2026-4426 (Closes: #1131444)
+    A flaw was found in libarchive. An Undefined Behavior vulnerability exists
+    in the zisofs decompression logic, caused by improper validation of a
+    field (`pz_log2_bs`) read from ISO9660 Rock Ridge extensions. A remote
+    attacker can exploit this by supplying a specially crafted ISO file. This
+    can lead to incorrect memory allocation and potential application crashes,
+    resulting in a denial-of-service (DoS) condition.
+  * Fix CVE-2026-5121 (Closes: #1133002)
+    A flaw was found in libarchive. On 32-bit systems, an integer overflow
+    vulnerability exists in the zisofs block pointer allocation logic. A
+    remote attacker can exploit this by providing a specially crafted ISO9660
+    image, which can lead to a heap buffer overflow. This could potentially
+    allow for arbitrary code execution on the affected system.
 
-  * fix CVE-2024-26256.
+ -- Arnaud Rebillout <arnaudr@debian.org>  Fri, 24 Apr 2026 11:36:34 +0700
 
- -- kongxinglong <kongxinglong@kongxinglong@uniontech.com>  Wed, 28 Aug 2024 15:52:55 +0800
+libarchive (3.7.4-4) unstable; urgency=medium
+
+  * Add the CVE-2025-5914, CVE-2025-5915, CVE-2025-5916, and
+    CVE-2025-5917 patches.
+    Closes: #1107621, #1107622, #1107623, #1107626
+
+ -- Peter Pentchev <roam@debian.org>  Thu, 24 Jul 2025 17:40:32 +0300
+
+libarchive (3.7.4-3) unstable; urgency=medium
+
+  * Rename the CVE-2025-1632 patch to CVE-2025-1632-25724, use the exact
+    upstream commit that fixes two problems at once.
+    Also closes: #1103479
+
+ -- Peter Pentchev <roam@debian.org>  Sun, 27 Apr 2025 23:19:29 +0300
+
+libarchive (3.7.4-2) unstable; urgency=high
+
+  * Acknowledge NMU; thanks, Salvatore!
+  * Point to the debian/trixie branch in the gbp.conf file since
+    the master branch in the repository already contains changes that
+    did not make it in time for the Trixie freeze.
+  * Add the CVE-2025-1632 patch. Closes: #1103494
+  * Add the year 2025 to my debian/* copyright notice.
+
+ -- Peter Pentchev <roam@debian.org>  Sat, 26 Apr 2025 11:34:57 +0300
+
+libarchive (3.7.4-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * rar4 reader: protect copy_from_lzss_window_to_unp() (CVE-2024-20696)
+    (Closes: #1086155)
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Fri, 01 Nov 2024 21:30:39 +0100
+
+libarchive (3.7.4-1) unstable; urgency=medium
+
+  * Drop a t64-related Lintian override.
+  * Declare compliance with Policy 4.7.0 with no changes.
+  * Use debhelper compat level 14:
+    - use X-DH-Compat
+    - let debhelper take care of some default dependencies
+  * New upstream version:
+    - use `git rm` in the `upstream` branch to remove two test files that
+      was forgotten in the upstream tarball generation
+    - update the symbols file
+    - drop the fix-OOB-in-rar-e8-filter-2135, iso9660-hash, test-zstd-32bit, and
+      robust-error-reporting patches, they were either taken from upstream or
+      integrated there
+    - refresh the typos patch
+    - refresh the line numbers in the fix-OOB-* patches
+  * Use debputy's X-Style: black.
+
+ -- Peter Pentchev <roam@debian.org>  Wed, 07 Aug 2024 14:36:27 +0300
+
+libarchive (3.7.2-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * fix: OOB in rar e8 filter (CVE-2024-26256) (Closes: #1072107)
+  * fix: OOB in rar delta filter
+  * fix: OOB in rar audio filter
+
+ -- Salvatore Bonaccorso <carnil@debian.org>  Sat, 01 Jun 2024 15:50:51 +0200
+
+libarchive (3.7.2-2) unstable; urgency=medium
+
+  [ Luca Boccassi ]
+  * libarchive-dev: depend on -dev packages in an attempt to
+    fix pkg-config --static --libs
+    Addresses: 1056317; more work needed on libarchive's own
+    configure tests
+
+  [ Peter Pentchev ]
+  * Acknowledge Lukas Märdian 64-bit-time_t-related NMU. Thanks!
+  * Add the year 2024 to my debian/* copyright notice.
+  * Re-sort the dependencies lists in the debian/control file.
+  * Switch the pkg-config dependency over to pkgconf.
+  * Add the robust-error-reporting upstream patch. Closes: #1068047
+
+ -- Peter Pentchev <roam@debian.org>  Sat, 30 Mar 2024 20:11:06 +0200
+
+libarchive (3.7.2-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Rename libraries for 64-bit time_t transition.  Closes: #1062224
+
+ -- Lukas Märdian <slyon@debian.org>  Thu, 29 Feb 2024 08:40:57 +0000
 
 libarchive (3.7.2-1) unstable; urgency=medium
 
