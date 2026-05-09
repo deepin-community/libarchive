@@ -1,32 +1,46 @@
 Source: libarchive
 Priority: optional
 Maintainer: Peter Pentchev <roam@debian.org>
-Build-Depends: debhelper-compat (= 13),
-               dpkg-build-api (= 1),
-               dh-package-notes,
-               pkg-config,
-               libbz2-dev,
-               liblz4-dev,
-               liblzma-dev,
-               libxml2-dev,
-               libzstd-dev,
-               zlib1g-dev,
-               libacl1-dev [!hurd-any],
-               libext2fs-dev,
-               sharutils <!nocheck>,
-               nettle-dev,
-               locales <!nocheck> | locales-all <!nocheck>
-Standards-Version: 4.6.2
+Build-Depends:
+ debhelper (>> 13.15.2~),
+ dh-package-notes,
+ dpkg-build-api (= 1),
+ dpkg-dev (>= 1.22.5),
+ libacl1-dev [!hurd-any],
+ libbz2-dev,
+ libext2fs-dev,
+ liblz4-dev,
+ liblzma-dev,
+ libxml2-dev,
+ libzstd-dev,
+ locales <!nocheck> | locales-all <!nocheck>,
+ nettle-dev,
+ pkgconf,
+ sharutils <!nocheck>,
+ zlib1g-dev,
+Standards-Version: 4.7.0
+X-DH-Compat: 14
 Section: libs
 Homepage: https://www.libarchive.org/
 Vcs-Browser: https://salsa.debian.org/debian/libarchive
 Vcs-Git: https://salsa.debian.org/debian/libarchive.git
+X-Style: black
 
 Package: libarchive-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: libarchive13 (= ${binary:Version}), ${misc:Depends}
+Depends:
+ libacl1-dev [!hurd-any],
+ libarchive13t64 (= ${binary:Version}),
+ libbz2-dev,
+ libext2fs-dev,
+ liblz4-dev,
+ liblzma-dev,
+ libxml2-dev,
+ libzstd-dev,
+ nettle-dev,
+ zlib1g-dev,
 Description: Multi-format archive and compression library (development files)
  The libarchive library provides a flexible interface for reading and writing
  archives in various formats such as tar and cpio. libarchive also supports
@@ -64,11 +78,15 @@ Description: Multi-format archive and compression library (development files)
  .
  This package provides the files necessary for development with libarchive.
 
-Package: libarchive13
+Package: libarchive13t64
+Replaces:
+ libarchive13,
+Breaks:
+ libarchive13 (<< ${source:Version}),
 Architecture: any
 Multi-Arch: same
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Suggests: lrzip
+Suggests:
+ lrzip,
 Description: Multi-format archive and compression library (shared library)
  The libarchive library provides a flexible interface for reading and writing
  archives in various formats such as tar and cpio. libarchive also supports
@@ -108,7 +126,8 @@ Description: Multi-format archive and compression library (shared library)
 
 Package: libarchive-tools
 Architecture: any
-Depends: libarchive13 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Depends:
+ libarchive13t64 (= ${binary:Version}),
 Section: utils
 Description: FreeBSD implementations of 'tar' and 'cpio' and other archive tools
  This package contains several command-line tools based on the libarchive

@@ -1,2 +1,7 @@
-Tests: minitar
-Depends: build-essential, file, libarchive-dev, pkg-config
+Tests:
+ minitar,
+Depends:
+ build-essential,
+ file,
+ libarchive-dev,
+ pkg-config,
