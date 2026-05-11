@@ -7,5 +7,5 @@ libarchive source: package-uses-deprecated-debhelper-compat-version 1
 # in compat level 14.
 #
 libarchive source: debhelper-but-no-misc-depends libarchive-dev
-libarchive source: debhelper-but-no-misc-depends libarchive13t64
+libarchive source: debhelper-but-no-misc-depends libarchive13
 libarchive source: debhelper-but-no-misc-depends libarchive-tools

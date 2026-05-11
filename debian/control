@@ -32,7 +32,7 @@ Architecture: any
 Multi-Arch: same
 Depends:
  libacl1-dev [!hurd-any],
- libarchive13t64 (= ${binary:Version}),
+ libarchive13 (= ${binary:Version}),
  libbz2-dev,
  libext2fs-dev,
  liblz4-dev,
@@ -78,11 +78,7 @@ Description: Multi-format archive and compression library (development files)
  .
  This package provides the files necessary for development with libarchive.
 
-Package: libarchive13t64
-Replaces:
- libarchive13,
-Breaks:
- libarchive13 (<< ${source:Version}),
+Package: libarchive13
 Architecture: any
 Multi-Arch: same
 Suggests:
@@ -127,7 +123,7 @@ Description: Multi-format archive and compression library (shared library)
 Package: libarchive-tools
 Architecture: any
 Depends:
- libarchive13t64 (= ${binary:Version}),
+ libarchive13 (= ${binary:Version}),
 Section: utils
 Description: FreeBSD implementations of 'tar' and 'cpio' and other archive tools
  This package contains several command-line tools based on the libarchive
