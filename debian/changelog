@@ -1,3 +1,12 @@
+libarchive (3.7.4-4+deb13u1deepin2) unstable; urgency=medium
+
+  * Fix CVE-2026-14164: Double free in libarchive RAR5 reader.
+    Clear filtered_buf and window_buf pointers to NULL after freeing
+    in init_unpack, preventing access through dangling pointers.
+    Upstream: libarchive/libarchive@1c914cd
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 02 Jul 2026 22:06:00 +0800
+
 libarchive (3.7.4-4+deb13u1deepin1) trixie; urgency=medium
 
   * Revert 64-bit time_t transition changes.
