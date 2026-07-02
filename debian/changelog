@@ -1,3 +1,12 @@
+libarchive (3.7.4-1.1deepin1) unstable; urgency=medium
+
+  * Fix CVE-2026-14164: Double free in RAR5 reader
+    - Avoid dangling pointers in init_unpack leading to double-free
+    - Attackers can cause DoS via crafted RAR5 archive
+    - Upstream: https://github.com/libarchive/libarchive/commit/1c914cd
+
+ -- deepin-ci-robot <packages@deepin.org>  Thu, 02 Jul 2026 20:55:00 +0800
+
 libarchive (3.7.4-4+deb13u1deepin1) trixie; urgency=medium
 
   * Revert 64-bit time_t transition changes.
